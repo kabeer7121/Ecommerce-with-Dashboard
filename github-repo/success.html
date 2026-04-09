@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Placed! - ShopEase Pakistan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="header">
+    <div class="top-bar">
+      🎉 Thank you for shopping with ShopEase!
+    </div>
+    <nav class="nav-main container">
+      <a href="index.html" class="logo">Shop<span>Ease</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <!-- Cart badge will show 0 since cart was cleared -->
+      <a href="cart.html" class="cart-btn">
+        <i class="fas fa-shopping-bag"></i>
+        Cart
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ===================== SUCCESS PAGE ===================== -->
+  <main class="success-page">
+    <div class="container" style="display:flex; justify-content:center;">
+
+      <!-- Big success card in the middle of the page -->
+      <div class="success-card">
+
+        <!-- Big green checkmark icon -->
+        <div class="success-icon">
+          <i class="fas fa-check"></i>
+        </div>
+
+        <!-- Heading -->
+        <h1>Order Placed!</h1>
+        <p>Thank you for your order! Our team will contact you to confirm the details.</p>
+
+        <!-- Order ID box -->
+        <div class="order-id-box">
+          <span>Your Order ID</span>
+          <!-- This is filled by JavaScript from saved order data -->
+          <strong id="successOrderId">#SE-000000</strong>
+        </div>
+
+        <!-- Customer and order details -->
+        <div style="background:#faf9f7; border-radius:12px; padding:20px; margin:18px 0; text-align:left;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.88rem;">
+            <span style="color:#888;">Customer:</span>
+            <strong id="successName">-</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.88rem;">
+            <span style="color:#888;">Phone:</span>
+            <strong id="successPhone">-</strong>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-bottom:10px; font-size:0.88rem;">
+            <span style="color:#888;">City:</span>
+            <strong id="successCity">-</strong>
+          </div>
+          <div style="border-top:1px solid #e8e4de; padding-top:10px; margin-top:5px;">
+            <!-- Mini items list -->
+            <div id="successItems"></div>
+          </div>
+        </div>
+
+        <!-- COD reminder box -->
+        <div class="cod-reminder">
+          <i class="fas fa-truck"></i>
+          <p>
+            Please keep <strong id="successTotal">Rs. 0</strong> ready for
+            <strong>Cash on Delivery</strong>. Our rider will collect payment at your doorstep.
+          </p>
+        </div>
+
+        <!-- Countdown redirect notice -->
+        <!-- JavaScript counts down from 5 and then redirects to home page -->
+        <div class="countdown-box">
+          <p>
+            Redirecting to home in
+            <span class="countdown-num" id="countdown">5</span>
+            seconds...
+          </p>
+          <!-- Manual link in case they want to go now -->
+          <a href="index.html" style="color:#c8a96e; font-size:0.85rem; text-decoration:none; margin-top:8px; display:inline-block;">
+            Go to Home Now →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 ShopEase Pakistan. All rights reserved. | Happy Shopping! 🛍️</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>

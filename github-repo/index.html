@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic settings for the webpage -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShopEase - Fashion for Everyone </title>
+
+  <!-- Google Fonts: Playfair Display for headings, Lato for body text -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome: for icons like cart, star, truck etc. -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Our own CSS file that styles everything -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <!-- The header stays at the top of the screen even when scrolling -->
+  <header class="header">
+
+    <!-- Top bar: small announcement strip -->
+    <div class="top-bar">
+      🚚 Free Delivery on Orders Above Rs. 3,000 &nbsp;|&nbsp; Cash on Delivery Available Across Pakistan
+    </div>
+
+    <!-- Main navigation bar -->
+    <nav class="nav-main container">
+
+      <!-- Website Logo -->
+      <a href="index.html" class="logo">Shop<span>Ease</span></a>
+
+      <!-- Navigation links — these link to different pages -->
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <!-- Cart button with item count badge -->
+      <a href="cart.html" class="cart-btn">
+        <i class="fas fa-shopping-bag"></i>
+        Cart
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+
+    </nav>
+  </header>
+
+  <!-- ===================== HERO SECTION ===================== -->
+  <!-- The big banner section at the top of the home page -->
+  <section class="hero">
+    <div class="container hero-content">
+
+      <!-- Small label above main heading -->
+      <div class="hero-tag">New Collection 2026</div>
+
+      <!-- Main heading -->
+      <h1>Dress to <em>Impress</em><br />with ShopEase</h1>
+
+      <!-- Subtitle text -->
+      <p>Discover the finest Pakistani fashion — from elegant kurtas to trendy casual wear. Quality clothing delivered to your doorstep.</p>
+
+      <!-- Two buttons: one to shop, one to learn more -->
+      <div class="hero-btns">
+        <a href="shop.html" class="btn-primary">
+          Shop Now <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="about.html" class="btn-outline">
+          <i class="fas fa-info-circle"></i> About Us
+        </a>
+      </div>
+
+      <!-- Stats row at the bottom of hero section -->
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h3>500+</h3>
+          <p>Products</p>
+        </div>
+        <div class="stat-item">
+          <h3>10K+</h3>
+          <p>Happy Customers</p>
+        </div>
+        <div class="stat-item">
+          <h3>All Pakistan</h3>
+          <p>Delivery</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FEATURES STRIP ===================== -->
+  <!-- Shows delivery, return, and quality promises -->
+  <section class="features-strip">
+    <div class="container features-grid">
+
+      <div class="feature-item">
+        <i class="fas fa-truck"></i>
+        <div>
+          <strong>Cash on Delivery</strong>
+          <span>Pay when you receive</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <i class="fas fa-undo-alt"></i>
+        <div>
+          <strong>Easy Returns</strong>
+          <span>7-day return policy</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <i class="fas fa-shield-alt"></i>
+        <div>
+          <strong>Quality Assured</strong>
+          <span>100% original products</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <i class="fas fa-headset"></i>
+        <div>
+          <strong>24/7 Support</strong>
+          <span>We're always here to help</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== CATEGORIES SECTION ===================== -->
+  <section class="categories-section">
+    <div class="container">
+
+      <!-- Section heading -->
+      <div class="section-title">
+        <div class="label">Explore</div>
+        <h2>Shop By Category</h2>
+        <p>Find exactly what you're looking for</p>
+      </div>
+
+      <!-- Category cards grid -->
+      <div class="cat-grid">
+        <a href="shop.html?cat=mens" class="cat-card">
+          <div class="cat-icon">👔</div>
+          <h3>Men's Wear</h3>
+          <p>Kameez, Polo, Jeans & more</p>
+        </a>
+        <a href="shop.html?cat=womens" class="cat-card">
+          <div class="cat-icon">👗</div>
+          <h3>Women's Wear</h3>
+          <p>Kurtas, Suits, Abayas & more</p>
+        </a>
+        <a href="shop.html?cat=kids" class="cat-card">
+          <div class="cat-icon">🧒</div>
+          <h3>Kids' Wear</h3>
+          <p>Frocks, Uniforms & more</p>
+        </a>
+        <a href="shop.html?cat=accessories" class="cat-card">
+          <div class="cat-icon">🧣</div>
+          <h3>Accessories</h3>
+          <p>Shawls, Dupattas & more</p>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== FEATURED PRODUCTS ===================== -->
+  <section class="products-section" style="background: #f2f0ec;">
+    <div class="container">
+
+      <!-- Section heading -->
+      <div class="section-title">
+        <div class="label">Handpicked</div>
+        <h2>Featured Products</h2>
+        <p>Our most loved clothing items this season</p>
+      </div>
+
+      <!-- Products will be loaded here by JavaScript -->
+      <div class="products-grid" id="featuredGrid"></div>
+
+      <!-- Button to go to full shop page -->
+      <div style="text-align:center; margin-top:40px;">
+        <a href="shop.html" class="btn-primary">
+          View All Products <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===================== BANNER / PROMO STRIP ===================== -->
+  <section style="background: #2c2c2c; padding: 60px 0; text-align:center; color:white;">
+    <div class="container">
+      <div class="label" style="color:#c8a96e; font-size:0.75rem; font-weight:700; letter-spacing:3px; text-transform:uppercase; margin-bottom:12px;">Limited Time</div>
+      <h2 style="font-family:'Playfair Display',serif; font-size:2.2rem; margin-bottom:12px;">Eid Collection is Here!</h2>
+      <p style="color:#aaa; margin-bottom:28px;">Special discounts on all festive wear. Shop before stocks run out.</p>
+      <a href="shop.html" class="btn-primary">
+        Explore Collection <i class="fas fa-sparkles"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+
+      <!-- Brand column -->
+      <div class="footer-brand">
+        <a href="index.html" class="logo">Shop<span>Ease</span></a>
+        <p>Your go-to destination for affordable, high-quality Pakistani clothing. Fashion for every occasion.</p>
+      </div>
+
+      <!-- Quick links column -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <!-- Categories column -->
+      <div class="footer-col">
+        <h4>Categories</h4>
+        <ul>
+          <li><a href="shop.html?cat=mens">Men's Wear</a></li>
+          <li><a href="shop.html?cat=womens">Women's Wear</a></li>
+          <li><a href="shop.html?cat=kids">Kids' Wear</a></li>
+          <li><a href="shop.html?cat=accessories">Accessories</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact info column -->
+      <div class="footer-col">
+        <h4>Contact Us</h4>
+        <div class="footer-contact-item">
+          <i class="fas fa-phone"></i>
+          <span>0300-1234567</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-envelope"></i>
+          <span>support@shopease.pk</span>
+        </div>
+        <div class="footer-contact-item">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Karachi, Sindh, Pakistan</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom copyright bar -->
+    <div class="footer-bottom">
+      <p>&copy; 2026 ShopEase. All rights reserved. | Designed with ❤️ for Pakistani fashion lovers</p>
+    </div>
+  </footer>
+
+  <!-- ===================== TOAST NOTIFICATION ===================== -->
+  <!-- This pops up at the bottom-right when an item is added to cart -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Item added to cart!</span>
+  </div>
+
+  <!-- Our JavaScript file — handles cart, products, etc. -->
+  <script src="script.js"></script>
+
+</body>
+</html>

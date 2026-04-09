@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>wp-admin - ShopEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="admin-login-page" id="adminLoginPage">
+    <div class="admin-login-card">
+      <a href="index.html" class="logo admin-login-logo">Shop<span>Ease</span></a>
+      <h1>Dashboard Login</h1>
+      <p>Sign in to manage products and store content.</p>
+      <form id="adminLoginForm" class="admin-login-form">
+        <div class="form-group">
+          <label for="adminUser">Username</label>
+          <input id="adminUser" type="text" autocomplete="username" required />
+        </div>
+        <div class="form-group">
+          <label for="adminPass">Password</label>
+          <input id="adminPass" type="password" autocomplete="current-password" required />
+        </div>
+        <div class="admin-login-error" id="adminLoginError">Invalid username or password.</div>
+        <button type="submit" class="btn-admin btn-admin-primary admin-login-btn">
+          <i class="fas fa-lock"></i> Login
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

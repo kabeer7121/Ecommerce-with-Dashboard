@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard - ShopEase</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <div class="top-bar">Professional Ecommerce Admin Panel</div>
+    <nav class="nav-main container">
+      <a href="index.html" class="logo">Shop<span>Ease</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+      </ul>
+      <button class="cart-btn" id="adminLogoutBtn" type="button">
+        <i class="fas fa-right-from-bracket"></i> Logout
+      </button>
+    </nav>
+  </header>
+
+  <main class="admin-page" id="adminApp">
+    <div class="container admin-shell">
+      <aside class="admin-sidebar">
+        <h2>Dashboard</h2>
+        <button class="admin-nav-btn active" data-tab="overview"><i class="fas fa-chart-line"></i> Overview</button>
+        <button class="admin-nav-btn" data-tab="products"><i class="fas fa-box"></i> Products</button>
+        <button class="admin-nav-btn" data-tab="orders"><i class="fas fa-bag-shopping"></i> Orders</button>
+        <button class="admin-nav-btn" data-tab="reviews"><i class="fas fa-star"></i> Reviews</button>
+        <button class="admin-nav-btn" data-tab="customize"><i class="fas fa-sliders"></i> Customize</button>
+      </aside>
+
+      <section class="admin-content">
+        <div class="admin-tab-panel" data-tab-panel="overview">
+          <div class="admin-stats-grid admin-kpi-grid">
+            <div class="admin-stat-card"><span>Total Revenue</span><strong id="kpiRevenue">Rs. 0</strong></div>
+            <div class="admin-stat-card"><span>Total Orders</span><strong id="kpiOrders">0</strong></div>
+            <div class="admin-stat-card"><span>Total Products</span><strong id="kpiProducts">0</strong></div>
+            <div class="admin-stat-card"><span>Pending Orders</span><strong id="kpiPending">0</strong></div>
+            <div class="admin-stat-card"><span>Delivered Orders</span><strong id="kpiDelivered">0</strong></div>
+            <div class="admin-stat-card"><span>Categories</span><strong id="kpiCategories">0</strong></div>
+            <div class="admin-stat-card"><span>Average Order</span><strong id="kpiAvgOrder">Rs. 0</strong></div>
+            <div class="admin-stat-card"><span>Low Stock Items</span><strong id="kpiLowStock">0</strong></div>
+          </div>
+          <div class="admin-overview-grid">
+            <section class="admin-panel">
+              <h2>Order Status Overview</h2>
+              <div class="admin-status-chart" id="overviewStatusChart"></div>
+            </section>
+            <section class="admin-panel">
+              <h2>Top Performing Products</h2>
+              <div class="admin-top-products" id="overviewTopProducts"></div>
+            </section>
+          </div>
+          <section class="admin-panel">
+            <h2>Data Recovery</h2>
+            <p class="admin-hint">If product pages break because of corrupted or oversized saved product data, use this to restore clean default products.</p>
+            <button type="button" class="btn-admin btn-admin-danger" id="resetProductsBtn">
+              <i class="fas fa-triangle-exclamation"></i> Reset Product Data
+            </button>
+          </section>
+        </div>
+
+        <div class="admin-tab-panel" data-tab-panel="products" style="display:none;">
+          <div class="admin-layout products-layout">
+            <section class="admin-panel">
+              <div class="admin-table-head">
+                <h2>Products List</h2>
+                <div class="admin-reviews-filters">
+                  <button type="button" class="btn-admin btn-admin-primary" id="adminOpenNewProductBtn">
+                    <i class="fas fa-plus"></i> Add New Product
+                  </button>
+                  <div class="shop-search">
+                    <input id="adminSearch" type="text" placeholder="Search by name, category, ID, SKU..." />
+                    <button type="button"><i class="fas fa-search"></i></button>
+                  </div>
+                </div>
+              </div>
+              <div class="admin-table-wrap">
+                <table class="admin-table">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Product</th>
+                      <th>Price</th>
+                      <th>Stock</th>
+                      <th>Original</th>
+                      <th>Rating</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody id="adminProductsTableBody"></tbody>
+                </table>
+                <div class="admin-empty" id="adminEmptyState">No products found.</div>
+              </div>
+            </section>
+
+            <section class="admin-panel admin-product-editor-panel" id="adminProductEditorPanel">
+              <div class="admin-editor-head">
+                <h2>Product Editor</h2>
+                <button type="button" class="btn-admin btn-admin-light admin-editor-toggle" id="adminProductEditorToggleBtn" aria-expanded="false" aria-controls="adminProductEditorBody">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="admin-editor-body" id="adminProductEditorBody">
+                <p id="adminEditingHint" class="admin-hint">Creating a new product</p>
+                <form id="adminProductForm" class="admin-form admin-form-enhanced">
+                <div class="form-group">
+                  <label for="productName">Product Name</label>
+                  <input id="productName" type="text" required />
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="productCategory">Category</label>
+                    <select id="productCategory" required>
+                      <option value="mens">Men's Wear</option>
+                      <option value="womens">Women's Wear</option>
+                      <option value="kids">Kids' Wear</option>
+                      <option value="accessories">Accessories</option>
+                      <option value="unstitched">Unstitched</option>
+                      <option value="shoes">Shoes</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="productBadge">Badge</label>
+                    <select id="productBadge" required>
+                      <option value="new">New</option>
+                      <option value="sale">Sale</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="productPrice">Price</label>
+                    <input id="productPrice" type="number" min="1" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="productOriginalPrice">Original Price</label>
+                    <input id="productOriginalPrice" type="number" min="1" required />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="productStock">Stock</label>
+                    <input id="productStock" type="number" min="0" value="25" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="productSku">SKU</label>
+                    <input id="productSku" type="text" placeholder="SE-0001" />
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="productRating">Rating (1 - 5)</label>
+                    <input id="productRating" type="number" min="1" max="5" step="0.1" required />
+                  </div>
+                  <div class="form-group">
+                    <label for="productReviews">Reviews Count</label>
+                    <input id="productReviews" type="number" min="0" required />
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="productImage">Image URL</label>
+                  <input id="productImage" type="url" required />
+                </div>
+                <div class="form-group">
+                  <label for="productGalleryUpload">Upload Multiple Images</label>
+                  <input id="productGalleryUpload" type="file" accept="image/*" multiple />
+                </div>
+                <div class="form-group">
+                  <label for="productGalleryUrl">Add Gallery Image URL</label>
+                  <div class="admin-inline-inputs">
+                    <input id="productGalleryUrl" type="url" placeholder="https://example.com/image.jpg" />
+                    <button class="btn-admin btn-admin-light" type="button" id="addGalleryUrlBtn"><i class="fas fa-plus"></i> Add</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label>Gallery Images (Arrange order)</label>
+                  <div class="admin-gallery-list" id="adminGalleryList"></div>
+                </div>
+                <div class="form-group">
+                  <label for="productDescription">Description</label>
+                  <textarea id="productDescription" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="productHighlights">About This Item Points (one per line)</label>
+                  <textarea id="productHighlights" rows="4" placeholder="Premium quality material with comfortable all-day feel.&#10;Designed for style, durability, and easy maintenance."></textarea>
+                </div>
+                <div class="admin-form-actions">
+                  <button type="submit" class="btn-admin btn-admin-primary"><i class="fas fa-plus"></i> Add Product</button>
+                  <button type="button" class="btn-admin btn-admin-light" id="resetProductForm"><i class="fas fa-rotate-left"></i> Reset</button>
+                </div>
+                </form>
+              </div>
+            </section>
+
+            <section class="admin-panel admin-product-editor-panel">
+              <div class="admin-editor-head">
+                <h2>Product Categories</h2>
+                <button type="button" class="btn-admin btn-admin-light admin-editor-toggle" id="adminCategoryToggleBtn" aria-expanded="false" aria-controls="adminCategoryBody">
+                  <i class="fas fa-chevron-down"></i>
+                </button>
+              </div>
+              <div class="admin-editor-body" id="adminCategoryBody">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="cmsCategoryLabel">Category Label</label>
+                    <input id="cmsCategoryLabel" type="text" placeholder="e.g. Formal Wear" />
+                  </div>
+                  <div class="form-group">
+                    <label for="cmsCategorySlug">Category Slug</label>
+                    <input id="cmsCategorySlug" type="text" placeholder="e.g. formal-wear" />
+                  </div>
+                </div>
+                <div class="admin-form-actions" style="margin-top:0;">
+                  <button type="button" class="btn-admin btn-admin-light" id="cmsAddCategoryBtn"><i class="fas fa-plus"></i> Add Category</button>
+                </div>
+                <div class="admin-simple-list" id="cmsCategoryList"></div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <div class="admin-tab-panel" data-tab-panel="orders" style="display:none;">
+          <section class="admin-panel">
+            <div class="admin-table-head">
+              <h2>Orders Management <span class="admin-subtext" id="adminOrdersCount">0 orders</span></h2>
+              <div class="admin-reviews-filters">
+                <select id="adminOrderStatusFilter" class="admin-order-status-select">
+                  <option value="all">All Statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Delivered">Delivered</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+                <div class="shop-search">
+                  <input id="adminOrderSearch" type="text" placeholder="Search by order ID, name, phone, status..." />
+                  <button type="button"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Order ID</th>
+                    <th>Customer</th>
+                    <th>Items</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Update</th>
+                    <th>View</th>
+                  </tr>
+                </thead>
+                <tbody id="adminOrdersTableBody"></tbody>
+              </table>
+              <div class="admin-empty" id="adminOrdersEmptyState">No orders found.</div>
+            </div>
+          </section>
+        </div>
+
+        <div class="admin-tab-panel" data-tab-panel="reviews" style="display:none;">
+          <section class="admin-panel">
+            <div class="admin-table-head">
+              <h2>Reviews Moderation <span class="admin-subtext" id="adminReviewsCount">0 reviews</span></h2>
+              <div class="admin-reviews-filters">
+                <select id="adminReviewProductFilter" class="admin-order-status-select">
+                  <option value="all">All Products</option>
+                </select>
+                <div class="shop-search">
+                  <input id="adminReviewSearch" type="text" placeholder="Search by product, reviewer, status..." />
+                  <button type="button"><i class="fas fa-search"></i></button>
+                </div>
+              </div>
+            </div>
+            <div class="admin-table-wrap">
+              <table class="admin-table">
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Reviewer</th>
+                    <th>Rating</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminReviewsTableBody"></tbody>
+              </table>
+              <div class="admin-empty" id="adminReviewsEmptyState">No reviews found.</div>
+            </div>
+          </section>
+        </div>
+
+        <div class="admin-tab-panel" data-tab-panel="customize" style="display:none;">
+          <section class="admin-panel">
+            <h2>Site Identity</h2>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cmsSiteName">Website Name</label>
+                <input id="cmsSiteName" type="text" />
+              </div>
+              <div class="form-group">
+                <label for="cmsSlogan">Slogan</label>
+                <input id="cmsSlogan" type="text" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cmsTopBarText">Top News Bar Text</label>
+                <input id="cmsTopBarText" type="text" placeholder="Enter top bar announcement text" />
+              </div>
+              <div class="form-group">
+                <label for="cmsTopBarEnabled">Top News Bar</label>
+                <div class="admin-checkbox-row">
+                  <input id="cmsTopBarEnabled" type="checkbox" class="admin-theme-checkbox" />
+                  <span>Enable top news bar</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cmsPhone">Phone</label>
+                <input id="cmsPhone" type="text" placeholder="e.g. 0300-1234567" />
+              </div>
+              <div class="form-group">
+                <label for="cmsEmail">Email Address</label>
+                <input id="cmsEmail" type="text" placeholder="e.g. support@shopease.pk" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cmsCurrencyPreset">Country & Currency</label>
+                <select id="cmsCurrencyPreset"></select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="cmsOfficeAddress">Office Address</label>
+              <input id="cmsOfficeAddress" type="text" placeholder="e.g. Clifton Block 5, Karachi, Sindh, Pakistan" />
+            </div>
+            <div class="form-group">
+              <label for="cmsFooterBrandText">Footer Brand Text</label>
+              <input id="cmsFooterBrandText" type="text" placeholder="Text shown below site name in footer" />
+            </div>
+            <div class="form-group">
+              <label for="cmsLogoUpload">Upload Logo</label>
+              <input id="cmsLogoUpload" type="file" accept="image/*" />
+              <div id="cmsLogoPreview" class="admin-logo-preview"></div>
+            </div>
+          </section>
+
+          <section class="admin-panel" style="margin-top:14px;">
+            <button type="button" class="btn-admin btn-admin-primary" id="cmsSaveAllBtn"><i class="fas fa-floppy-disk"></i> Save All Customization</button>
+          </section>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span>Saved</span>
+  </div>
+
+  <div class="admin-modal-backdrop" id="orderDetailsModal">
+    <div class="admin-modal">
+      <div class="admin-modal-head">
+        <h3>Order Details</h3>
+        <button class="btn-admin btn-admin-light" type="button" id="closeOrderModalBtn"><i class="fas fa-xmark"></i> Close</button>
+      </div>
+      <div class="admin-modal-body" id="orderDetailsContent"></div>
+    </div>
+  </div>
+
+  <div class="admin-modal-backdrop" id="reviewDetailsModal">
+    <div class="admin-modal">
+      <div class="admin-modal-head">
+        <h3>Review Details</h3>
+        <button class="btn-admin btn-admin-light" type="button" id="closeReviewModalBtn"><i class="fas fa-xmark"></i> Close</button>
+      </div>
+      <div class="admin-modal-body" id="reviewDetailsContent"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

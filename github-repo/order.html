@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout - ShopEase Pakistan</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Lato:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===================== HEADER ===================== -->
+  <header class="header">
+    <div class="top-bar">
+      🚚 Free Delivery on Orders Above Rs. 3,000 &nbsp;|&nbsp; Cash on Delivery Available Across Pakistan
+    </div>
+    <nav class="nav-main container">
+      <a href="index.html" class="logo">Shop<span>Ease</span></a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <a href="cart.html" class="cart-btn">
+        <i class="fas fa-shopping-bag"></i>
+        Cart
+        <span class="cart-badge" id="cartBadge">0</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- ===================== PAGE BANNER ===================== -->
+  <section class="page-banner">
+    <div class="container">
+      <h1>Checkout</h1>
+      <p>Fill in your delivery details to place the order</p>
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right" style="font-size:0.7rem"></i>
+        <a href="cart.html">Cart</a>
+        <i class="fas fa-chevron-right" style="font-size:0.7rem"></i>
+        <span>Checkout</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ORDER FORM SECTION ===================== -->
+  <main class="order-page">
+    <div class="container">
+
+      <!-- Step progress bar — shows user is at step 2 (Delivery Info) -->
+      <div class="steps-bar">
+        <div class="step done">
+          <div class="step-num"><i class="fas fa-check"></i></div>
+          <span>Cart</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step active">
+          <div class="step-num">2</div>
+          <span>Delivery Info</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <span>Confirm</span>
+        </div>
+      </div>
+
+      <!-- Two column layout: form left, summary right -->
+      <div class="order-layout">
+
+        <!-- LEFT: Delivery Information Form -->
+        <div class="form-box">
+          <h2><i class="fas fa-map-marker-alt" style="color:#c8a96e;margin-right:8px;"></i>Delivery Information</h2>
+
+          <!-- Full name -->
+          <div class="form-group">
+            <label>Full Name *</label>
+            <input type="text" id="custName" placeholder="e.g. Ahmed Ali Khan" />
+          </div>
+
+          <!-- Phone and email in one row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>Phone Number *</label>
+              <input type="tel" id="custPhone" placeholder="e.g. 0300-1234567" />
+            </div>
+            <div class="form-group">
+              <label>Email (Optional)</label>
+              <input type="email" id="custEmail" placeholder="e.g. ahmed@email.com" />
+            </div>
+          </div>
+
+          <!-- Street address -->
+          <div class="form-group">
+            <label>Full Address *</label>
+            <textarea id="custAddress" rows="3" placeholder="House No., Street, Area / Colony..."></textarea>
+          </div>
+
+          <!-- City and Province in one row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>City *</label>
+              <input type="text" id="custCity" placeholder="e.g. Karachi" />
+            </div>
+            <div class="form-group">
+              <label>Province</label>
+              <!-- Dropdown with all Pakistani provinces -->
+              <select id="custProvince">
+                <option value="Punjab">Punjab</option>
+                <option value="Sindh">Sindh</option>
+                <option value="KPK">Khyber Pakhtunkhwa (KPK)</option>
+                <option value="Balochistan">Balochistan</option>
+                <option value="Islamabad">Islamabad Capital Territory</option>
+                <option value="AJK">Azad Kashmir (AJK)</option>
+                <option value="GB">Gilgit-Baltistan</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Special instructions -->
+          <div class="form-group">
+            <label>Order Notes (Optional)</label>
+            <textarea id="custNotes" rows="2" placeholder="Any special instructions for delivery..."></textarea>
+          </div>
+
+          <!-- COD Notice box — payment method -->
+          <div class="cod-box">
+            <i class="fas fa-money-bill-wave"></i>
+            <div>
+              <strong>Payment: Cash on Delivery</strong>
+              <p>You will pay in cash when your order is delivered to your address.</p>
+            </div>
+          </div>
+
+          <!-- Confirm order button — calls placeOrder() from script.js -->
+          <button class="btn-place-order" onclick="placeOrder()">
+            <i class="fas fa-check-circle"></i> Confirm & Place Order
+          </button>
+
+        </div>
+
+        <!-- RIGHT: Order Summary Sidebar -->
+        <div class="order-summary-box">
+          <h3><i class="fas fa-receipt" style="color:#c8a96e;margin-right:8px;"></i>Your Order</h3>
+
+          <!-- Mini product list — loaded by JavaScript from cart -->
+          <div id="orderItemsList"></div>
+
+          <!-- Totals -->
+          <div class="summary-row" style="margin-top:16px;">
+            <span>Subtotal:</span>
+            <span id="orderSubtotal">Rs. 0</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping:</span>
+            <span id="orderShipping">Rs. 0</span>
+          </div>
+          <div class="summary-row total">
+            <span>Grand Total:</span>
+            <span id="orderTotal">Rs. 0</span>
+          </div>
+
+          <!-- Edit cart link -->
+          <a href="cart.html" style="display:block;text-align:center;margin-top:16px;color:#888;text-decoration:none;font-size:0.83rem;">
+            <i class="fas fa-edit"></i> Edit Cart
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 ShopEase Pakistan. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
